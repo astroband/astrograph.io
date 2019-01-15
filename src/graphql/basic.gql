@@ -1,0 +1,40 @@
+query($id: AccountID!) {
+  account(id: $id) {
+    id
+    sequenceNumber
+    thresholds {
+      low
+      medium
+      high
+      masterWeight
+    }
+    flags {
+      authRequired
+      authRevokable
+      authImmutable
+    }
+    ledger {
+      seq
+    }
+    trustLines {
+      asset {
+        native
+        issuer
+        code
+      }
+      balance
+      limit
+      authorized
+    }
+    signers {
+      signer {
+        id
+      }
+      weight
+    }
+    data {
+      name
+      value
+    }
+  }
+}
