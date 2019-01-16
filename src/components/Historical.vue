@@ -1,8 +1,8 @@
 <template>
-  <div id="basic">
-    <h1 class="ui dividing header">Basic query</h1>
+  <div id="historical" >
+    <h1 class="ui dividing header">Historical query</h1>
 
-    <p>Let's try to fetch account current state including it's signers, data entries and trust lines via GraphQL.</p>
+    <p>Let's fetch operations history, with filters, blows and whistles.</p>
 
     <form class="ui form">
       <div class="field">
@@ -16,12 +16,13 @@
         </div>
         <div class="field">
           <label for="result">Result:</label>
+
           <Results :query="query" :variables="variables" />
         </div>
       </div>
     </form>
 
-    <p>You can get account signers, data entries and offers and transactions separately. All basic data in one place, no need to make multiple HTTP queries.</p>
+    <p>You can fetch operations history, filtered by account number or for all accounts at once. Every operation has it's own filters as well.</p>
   </div>
 </template>
 
@@ -30,13 +31,13 @@ import gql from 'graphql-tag';
 import Results from './Results.vue';
 
 export default {
-  name: "Basic",
+  name: "Historical",
   components: {
-    Results
+    Results,
   },
   computed: {
     query() {
-      return require('../graphql/basic.gql');
+      return require('../graphql/historical.gql');
     },
     variables() {
       return { id: this.id };

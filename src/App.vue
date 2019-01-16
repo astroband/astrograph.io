@@ -3,16 +3,25 @@
     <p>Let us introduce Astrograph: GraphQL interface to Stellar blockchain.</p>
 
     <Basic />
+    <Historical />
+
+    <!-- Live: subscribe to network events -->
+
+    <!-- Advanced: rare queries -->
+    <!-- What's going on with an asset? -->
+    <!-- Who are the biggest asset stake holders? -->
   </div>
 </template>
 
 <script>
 import Basic from "./components/Basic.vue";
+import Historical from "./components/Historical.vue";
 
 export default {
   name: "app",
   components: {
-    Basic
+    Basic,
+    Historical,
   }
 };
 </script>
@@ -28,5 +37,9 @@ export default {
 
 form {
   margin-bottom: 1em;
+}
+
+h1 {
+  margin-top: 1em !important;
 }
 </style>
