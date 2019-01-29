@@ -2,12 +2,12 @@
   <div id="historical" >
     <h1 class="ui dividing header">Historical query</h1>
 
-    <p>Let's fetch operations history, with filters, blows and whistles.</p>
+    <p>Let's fetch XLM payments history, with filters, blows and whistles.</p>
 
     <form class="ui form">
       <div class="field">
         <label for="id">Account ID:</label>
-        <input id="id" type="text" placeholder="Example: GCHDYNE7ATLJNIERZQL3D7W7S42XZKN4AK73QT7Q665Q5JJ5X6E7V5KA" v-model="id" />
+        <input id="id" type="text" placeholder="Example: GAXBWGH4K5AB26LFJZTPJW4Q5UEVA4GTUWBUSCHK5CHU3LBEA44V6S56" v-model="id" />
       </div>
       <div class="two fields">
         <div class="field">
@@ -22,11 +22,12 @@
       </div>
     </form>
 
-    <p>You can fetch operations history, filtered by account number or for all accounts at once. Every operation has it's own filters as well.</p>
+    <p>You can fetch operations history, filtered by account number and kinds. Every operation kind has it's own filters as well.</p>
   </div>
 </template>
 
 <script>
+// TODO: Mustasche + graphql template, if it will finally work?
 import gql from 'graphql-tag';
 import Results from './Results.vue';
 
@@ -45,7 +46,7 @@ export default {
   },
   data() {
     return {
-      id: 'GA2OUHQPMPY2PY7HK6D74P3ZT2OWBMJNH7SMKOHB4DZTYLFCTQANOV2J'
+      id: 'GAXBWGH4K5AB26LFJZTPJW4Q5UEVA4GTUWBUSCHK5CHU3LBEA44V6S56'
     };
   }
 };

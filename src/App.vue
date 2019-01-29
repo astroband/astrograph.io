@@ -4,8 +4,7 @@
 
     <Basic />
     <Historical />
-
-    <!-- Live: subscribe to network events -->
+    <Subscriptions />
 
     <!-- Advanced: rare queries -->
     <!-- What's going on with an asset? -->
@@ -16,12 +15,14 @@
 <script>
 import Basic from "./components/Basic.vue";
 import Historical from "./components/Historical.vue";
+import Subscriptions from "./components/Subscriptions.vue";
 
 export default {
   name: "app",
   components: {
     Basic,
     Historical,
+    Subscriptions,
   }
 };
 </script>

@@ -1,0 +1,13 @@
+subscription {
+  trustLine(args: {}) {
+    mutationType
+    accountID
+    values {
+      balance
+      asset {
+        code
+        issuer
+      }
+    }
+  }
+}

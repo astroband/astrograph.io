@@ -1,6 +1,14 @@
 query($id: AccountID!) {
   operations(
     account: $id
+    kinds: [payment]
+    filters: {
+      payment: {
+        asset: {
+          code: "XLM"
+        }
+      }
+    }
     first: 10
     offset: 0
   ) {
@@ -9,16 +17,11 @@ query($id: AccountID!) {
     ... on PaymentOperation {
       source
       destination
+      dateTime
       asset {
         code
       }
       amount
-    }
-
-    ... on SetOptionsOperation {
-      clearFlags
-      homeDomain
-      masterWeight
     }
   }
 }
