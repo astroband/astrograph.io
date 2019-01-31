@@ -1,5 +1,5 @@
 query($id: AccountID!) {
-  operations(
+  accountOperations(
     account: $id
     kinds: [payment]
     filters: {
