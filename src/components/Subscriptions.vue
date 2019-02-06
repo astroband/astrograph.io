@@ -1,5 +1,5 @@
 <template>
-  <div id="historical" >
+  <div id="historical">
     <h1 class="ui dividing header">Real-time data subscriptions</h1>
 
     <p>Let's see what's happening with account balances in real time.</p>
@@ -16,38 +16,37 @@
         </div>
       </div>
     </form>
-
   </div>
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
-const subscriptionQuery = require('../graphql/subscription.gql');
+const subscriptionQuery = require("../graphql/subscription.gql");
 
 export default {
   name: "Subscriptions",
 
-  mounted () {
+  mounted() {
     const observer = this.$apollo.subscribe({
       query: subscriptionQuery,
-      variables: { }
+      variables: {}
     });
 
     observer.subscribe({
-      next: (data) => {
+      next: data => {
         this.result = data;
       },
-      error (error) {
-        console.error(error)
-      },
-    })
+      error(error) {
+        console.error(error);
+      }
+    });
   },
 
   computed: {
     query() {
       return subscriptionQuery;
-    },
+    }
   },
 
   data() {
