@@ -1,28 +1,6 @@
-<template>
-  <div id="historical">
-    <h1 class="ui dividing header">Real-time data subscriptions</h1>
-
-    <p>Let's see what's happening with account balances in real time.</p>
-
-    <form class="ui form">
-      <div class="two fields">
-        <div class="field">
-          <label for="query">Query:</label>
-          <textarea readonly id="query">{{ query.loc.source.body }}</textarea>
-        </div>
-        <div class="field">
-          <label for="result">Result:</label>
-          <textarea readonly id="result">{{ result }}</textarea>
-        </div>
-      </div>
-    </form>
-  </div>
-</template>
-
 <script>
-import gql from "graphql-tag";
-
-const subscriptionQuery = require("../graphql/subscription.gql");
+import Snippet from "./Snippet";
+import subscriptionQuery from "../graphql/subscription.gql";
 
 export default {
   name: "Subscriptions",
@@ -32,7 +10,6 @@ export default {
       query: subscriptionQuery,
       variables: {}
     });
-
     observer.subscribe({
       next: data => {
         this.result = data;
@@ -42,17 +19,47 @@ export default {
       }
     });
   },
-
   computed: {
     query() {
-      return subscriptionQuery;
+      return subscriptionQuery.loc.source.body;
     }
   },
-
   data() {
     return {
       result: ""
     };
-  }
+  },
+  components: { Snippet }
 };
 </script>
+
+<template>
+  <div>
+    <h1>Real-time data subscriptions</h1>
+    <p>Let's see what's happening with account balances in real time.</p>
+    <div class="wrapper">
+      <div class="field">
+        <label>Query:</label>
+        <Snippet :data="query" class="code"/>
+      </div>
+      <div class="field">
+        <label>Result:</label>
+        <Snippet :data="result" :error="error" :loading="loading" class="code"/>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<style scoped>
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.code {
+  width: 300px;
+  height: 400px;
+}
+</style>
