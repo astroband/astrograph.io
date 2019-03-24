@@ -38,11 +38,9 @@ export default {
 </script>
 
 <template>
-  <div id="basic">
-    <h1 class="ui dividing header">Basic query</h1>
-
+  <div>
+    <h1>Basic query</h1>
     <p>Let's try to fetch account current state including it's signers, data entries and trust lines via GraphQL.</p>
-
     <div class="input">
       <label for="id">Account ID:</label>
       <input
@@ -63,7 +61,6 @@ export default {
         <Snippet :data="result" :error="error" :loading="loading" class="code"/>
       </div>
     </div>
-
     <p>
       You can get account signers, data entries and offers and transactions
       separately. All basic data in one place, no need to make multiple HTTP

@@ -3,6 +3,7 @@ import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Basic from "./components/Basic.vue";
 import Subscriptions from "./components/Subscriptions.vue";
+import Tick from "./components/Tick.vue";
 
 export default {
   name: "App",
@@ -10,6 +11,7 @@ export default {
     Header,
     Basic,
     Subscriptions,
+    Tick,
     Footer
   }
 };
@@ -19,6 +21,7 @@ export default {
   <div class="content">
     <Header/>
     <Basic/>
+    <Tick/>
     <Subscriptions/>
     <Footer/>
   </div>
