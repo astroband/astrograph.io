@@ -57,6 +57,7 @@ export default {
 .snippet {
   box-sizing: border-box;
   overflow: auto;
+  height: 400px;
   padding: 12px;
   font-family: Inconsolata, monospace;
   font-size: 18px;

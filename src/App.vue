@@ -73,6 +73,6 @@ input {
 <style scoped>
 .content {
   margin: 0 auto;
-  width: 660px;
+  width: 960px;
 }
 </style>

@@ -31,8 +31,8 @@ export default {
 .header {
   display: flex;
   height: 325px;
-  padding: 0 0 0 190px;
-  margin: 0 -170px -195px -390px;
+  padding: 0 0 0 40px;
+  margin: 0 -20px -195px -240px;
   background: url("../assets/background.svg") no-repeat;
 }
 

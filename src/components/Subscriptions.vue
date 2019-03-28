@@ -1,4 +1,5 @@
 <script>
+import Panels from "./Panels";
 import Snippet from "./Snippet";
 import query from "../graphql/subscription.gql";
 
@@ -29,7 +30,7 @@ export default {
       error: null
     };
   },
-  components: { Snippet }
+  components: { Panels, Snippet }
 };
 </script>
 
@@ -37,28 +38,15 @@ export default {
   <div>
     <h1>Real-time data subscriptions</h1>
     <p>Let's see what's happening with account balances in real time.</p>
-    <div class="wrapper">
-      <div class="field">
+    <Panels>
+      <template v-slot:query>
         <label>Query:</label>
-        <Snippet :data="query" language="graphql" class="code" />
-      </div>
-      <div class="field">
-        <label>Result:</label>
-        <Snippet :data="result" :error="error" language="json" class="code" />
-      </div>
-    </div>
+        <Snippet :data="query" language="graphql" />
+      </template>
+      <template v-slot:result>
+        <label>Result:</label> <label>Result:</label>
+        <Snippet :data="result" :error="error" language="json" />
+      </template>
+    </Panels>
   </div>
 </template>
-
-<style scoped>
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
-}
-
-.code {
-  width: 300px;
-  height: 400px;
-}
-</style>
