@@ -1,16 +1,19 @@
 <template>
   <div class="header">
-    <img src="../assets/logo.png" alt="Logo" class="logo">
+    <img src="../assets/logo.png" alt="Logo" class="logo" />
     <div class="desc">
-      <img src="../assets/textlogo.svg" alt="Astrograph">
+      <img src="../assets/textlogo.svg" alt="Astrograph" />
       <div>GraphQL interface to Stellar blockchain</div>
     </div>
     <div class="buttons">
-      <ButtonLink href="https://astrograph.evilmartians.io/graphql" class="button">
-        <img src="../assets/demo.svg" class="icon">Demo
+      <ButtonLink
+        href="https://astrograph.evilmartians.io/graphql"
+        class="button"
+      >
+        <img src="../assets/demo.svg" class="icon" />Demo
       </ButtonLink>
       <ButtonLink href="https://github.com/astroband/astrograph" hollow>
-        <img src="../assets/github.svg" class="icon">Github
+        <img src="../assets/github.svg" class="icon" />Github
       </ButtonLink>
     </div>
   </div>

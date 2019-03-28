@@ -40,7 +40,10 @@ export default {
 <template>
   <div>
     <h1>Basic query</h1>
-    <p>Let's try to fetch account current state including it's signers, data entries and trust lines via GraphQL.</p>
+    <p>
+      Let's try to fetch account current state including it's signers, data
+      entries and trust lines via GraphQL.
+    </p>
     <div class="input">
       <label for="id">Account ID:</label>
       <input
@@ -48,17 +51,23 @@ export default {
         type="text"
         placeholder="Example: GCHDYNE7ATLJNIERZQL3D7W7S42XZKN4AK73QT7Q665Q5JJ5X6E7V5KA"
         v-model="id"
-      >
+      />
     </div>
 
     <div class="wrapper">
       <div class="field">
         <label>Query:</label>
-        <Snippet :data="query" class="code"/>
+        <Snippet :data="query" language="graphql" class="code" />
       </div>
       <div class="field">
         <label>Result:</label>
-        <Snippet :data="result" :error="error" :loading="loading" class="code"/>
+        <Snippet
+          :data="result"
+          :error="error"
+          :loading="loading"
+          language="json"
+          class="code"
+        />
       </div>
     </div>
     <p>

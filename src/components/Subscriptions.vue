@@ -1,32 +1,32 @@
 <script>
 import Snippet from "./Snippet";
-import subscriptionQuery from "../graphql/subscription.gql";
+import query from "../graphql/subscription.gql";
 
 export default {
   name: "Subscriptions",
-
   mounted() {
     const observer = this.$apollo.subscribe({
-      query: subscriptionQuery,
+      query: query,
       variables: {}
     });
     observer.subscribe({
       next: data => {
-        this.result = data;
+        this.result = JSON.stringify(data, null, 2);
       },
       error(error) {
-        console.error(error);
+        this.error = error;
       }
     });
   },
   computed: {
     query() {
-      return subscriptionQuery.loc.source.body;
+      return query.loc.source.body;
     }
   },
   data() {
     return {
-      result: ""
+      result: null,
+      error: null
     };
   },
   components: { Snippet }
@@ -40,16 +40,15 @@ export default {
     <div class="wrapper">
       <div class="field">
         <label>Query:</label>
-        <Snippet :data="query" class="code"/>
+        <Snippet :data="query" language="graphql" class="code" />
       </div>
       <div class="field">
         <label>Result:</label>
-        <Snippet :data="result" :error="error" :loading="loading" class="code"/>
+        <Snippet :data="result" :error="error" language="json" class="code" />
       </div>
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .wrapper {

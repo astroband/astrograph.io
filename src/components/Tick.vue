@@ -40,11 +40,17 @@ export default {
     <div class="wrapper">
       <div class="field">
         <label>Query:</label>
-        <Snippet :data="query" class="code"/>
+        <Snippet :data="query" language="graphql" class="code" />
       </div>
       <div class="field">
         <label>Result:</label>
-        <Snippet :data="result" :error="error" :loading="loading" class="code"/>
+        <Snippet
+          :data="result"
+          :error="error"
+          :loading="loading"
+          language="json"
+          class="code"
+        />
       </div>
     </div>
   </div>

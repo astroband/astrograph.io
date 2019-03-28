@@ -19,11 +19,11 @@ export default {
 
 <template>
   <div class="content">
-    <Header/>
-    <Basic/>
-    <Tick/>
-    <Subscriptions/>
-    <Footer/>
+    <Header />
+    <Basic />
+    <Tick />
+    <Subscriptions />
+    <Footer />
   </div>
 </template>
 

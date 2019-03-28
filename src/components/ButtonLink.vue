@@ -17,7 +17,12 @@ export default {
 </script>
 
 <template>
-  <a :class="['wrapper', { hollow: hollow }]" :href="href" target="_blank" rel="noopener">
+  <a
+    :class="['wrapper', { hollow: hollow }]"
+    :href="href"
+    target="_blank"
+    rel="noopener"
+  >
     <slot></slot>
   </a>
 </template>
