@@ -44,7 +44,7 @@ export default {
         <Snippet :data="query" language="graphql" />
       </template>
       <template v-slot:result>
-        <label>Result:</label> <label>Result:</label>
+        <label>Result:</label>
         <Snippet :data="result" :error="error" language="json" />
       </template>
     </Panels>
