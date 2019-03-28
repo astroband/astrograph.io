@@ -6,8 +6,8 @@ export default {
 
 <template>
   <div class="wrapper">
-    <div class="field"><slot name="query"></slot></div>
-    <div class="field"><slot name="result"></slot></div>
+    <div class="field query"><slot name="query"></slot></div>
+    <div class="field result"><slot name="result"></slot></div>
   </div>
 </template>
 
@@ -18,8 +18,12 @@ export default {
   margin-top: 40px;
 }
 
-.field {
-  min-width: 450px;
+.query {
+  min-width: 300px;
+}
+
+.result {
+  min-width: 600px;
 }
 
 .field + .field {
