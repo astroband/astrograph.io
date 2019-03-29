@@ -19,7 +19,9 @@ query($id: AccountID!) {
     trustLines {
       asset {
         native
-        issuer
+        issuer {
+          id
+        }
         code
       }
       balance
