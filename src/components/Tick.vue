@@ -72,27 +72,33 @@ export default {
     <p>Tick description.</p>
     <Panels>
       <template v-slot:query>
-        <label>Selling:</label>
-        <div class="select-wrapper">
-          <select v-model="selling" class="select">
-            <option
-              v-for="option in currencies"
-              :value="option.value"
-              :key="option.value"
-              >{{ option.label }}</option
-            >
-          </select>
-        </div>
-        <label>Buying:</label>
-        <div class="select-wrapper">
-          <select v-model="buying" class="select">
-            <option
-              v-for="option in currencies"
-              :value="option.value"
-              :key="option.value"
-              >{{ option.label }}</option
-            >
-          </select>
+        <div class="selects">
+          <div class="select-group">
+            <label>Selling:</label>
+            <div class="select-wrapper">
+              <select v-model="selling" class="select">
+                <option
+                  v-for="option in currencies"
+                  :value="option.value"
+                  :key="option.value"
+                  >{{ option.label }}</option
+                >
+              </select>
+            </div>
+          </div>
+          <div class="select-group">
+            <label>Buying:</label>
+            <div class="select-wrapper">
+              <select v-model="buying" class="select">
+                <option
+                  v-for="option in currencies"
+                  :value="option.value"
+                  :key="option.value"
+                  >{{ option.label }}</option
+                >
+              </select>
+            </div>
+          </div>
         </div>
       </template>
       <template v-slot:result>
@@ -126,5 +132,15 @@ export default {
   margin-bottom: 10px;
   font-size: 24px;
   line-height: 1;
+}
+
+@media (max-width: 999px) {
+  .selects {
+    display: flex;
+  }
+
+  .select-group {
+    width: 50%;
+  }
 }
 </style>

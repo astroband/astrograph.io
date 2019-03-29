@@ -70,6 +70,12 @@ export default {
 .error {
   color: #ff6e7f;
 }
+
+@media (max-width: 999px) {
+  .snippet {
+    height: 250px;
+  }
+}
 </style>
 
 <style>

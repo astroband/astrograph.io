@@ -67,11 +67,26 @@ input {
   box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.3);
   background: #2f1c3e;
 }
+
+@media (max-width: 999px) {
+  h1 {
+    margin-top: 40px;
+    font-size: 24px;
+    color: #fff;
+  }
+}
 </style>
 
 <style scoped>
 .content {
   margin: 0 auto;
   width: 960px;
+}
+
+@media (max-width: 999px) {
+  .content {
+    width: auto;
+    padding: 0 10px;
+  }
 }
 </style>

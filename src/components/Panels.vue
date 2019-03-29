@@ -14,19 +14,35 @@ export default {
 <style scoped>
 .wrapper {
   display: flex;
-  justify-content: stretch;
-  margin-top: 40px;
 }
 
-.query {
-  min-width: 300px;
+@media (max-width: 999px) {
+  .wrapper {
+    margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .field + .field {
+    margin-top: 20px;
+  }
 }
 
-.result {
-  min-width: 600px;
-}
+@media (min-width: 1000px) {
+  .wrapper {
+    margin-top: 40px;
+    justify-content: stretch;
+  }
 
-.field + .field {
-  margin-left: 60px;
+  .query {
+    min-width: 300px;
+  }
+
+  .result {
+    min-width: 600px;
+  }
+
+  .field + .field {
+    margin-left: 60px;
+  }
 }
 </style>

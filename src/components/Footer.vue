@@ -30,4 +30,14 @@ export default {
   margin: 0 auto;
   font-size: 20px;
 }
+
+@media (max-width: 999px) {
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
 </style>

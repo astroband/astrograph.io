@@ -30,6 +30,7 @@ export default {
 <style scoped>
 .header {
   display: flex;
+  flex-direction: row;
   height: 325px;
   margin: 0 0 -195px -200px;
   background: url("../assets/background.svg") no-repeat;
@@ -58,10 +59,32 @@ export default {
   margin-right: 23px;
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 999px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .desc {
+    flex-grow: 1;
+    padding: 10px 0 20px;
+  }
+
+  .buttons {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1359px) {
+  .header {
+    height: 130px;
+  }
+}
+
+@media (max-width: 1359px) {
   .header {
     padding: 0;
-    margin: 0 0 -195px 0;
+    margin: 0;
     background: none;
   }
 
