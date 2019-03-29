@@ -36,7 +36,7 @@ body {
   background: #2a1a37;
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
-  line-height: 25px;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -49,7 +49,6 @@ label {
 
 h1 {
   margin-top: 100px;
-  font-family: WorkSans-Black;
   font-size: 40px;
   color: #fff;
 }
@@ -61,7 +60,7 @@ input {
   height: 40px;
   padding: 5px;
   border: none;
-  font-family: Inconsolata-Regular;
+  font-family: Inconsolata, monospace;
   font-size: 18px;
   color: #ffd795;
   line-height: 20px;

@@ -1,13 +1,26 @@
 <script>
 import Panels from "./Panels.vue";
-import Snippet from "./Snippet.vue";
 import query from "../graphql/tick.gql";
+
+const CURRENCIES = [
+  {
+    label: "USD",
+    value: "USD-GBSTRUSD7IRX73RQZBL3RQUH6KS3O4NYFY3QCALDLZD77XMZOPWAVTUK"
+  },
+  {
+    label: "ETH",
+    value: "ETH-GBSTRH4QOTWNSVA6E4HFERETX4ZLSR3CIUBLK7AXYII277PFJC4BBYOG"
+  }
+];
 
 export default {
   name: "Basic",
   apollo: {
     tick: {
       query,
+      variables() {
+        return { selling: this.selling, buying: this.buying };
+      },
       error(error) {
         this.error = error;
       }
@@ -26,11 +39,30 @@ export default {
   },
   data() {
     return {
+      selling: "USD-GBSTRUSD7IRX73RQZBL3RQUH6KS3O4NYFY3QCALDLZD77XMZOPWAVTUK",
+      buying: "ETH-GBSTRH4QOTWNSVA6E4HFERETX4ZLSR3CIUBLK7AXYII277PFJC4BBYOG",
+      currencies: CURRENCIES,
       error: null,
       tick: null
     };
   },
-  components: { Panels, Snippet }
+  watch: {
+    selling: function(val) {
+      if (val === this.buying) {
+        this.buying = this.currencies.find(
+          option => option.value !== val
+        ).value;
+      }
+    },
+    buying: function(val) {
+      if (val === this.selling) {
+        this.selling = this.currencies.find(
+          option => option.value !== val
+        ).value;
+      }
+    }
+  },
+  components: { Panels }
 };
 </script>
 
@@ -40,18 +72,59 @@ export default {
     <p>Tick description.</p>
     <Panels>
       <template v-slot:query>
-        <label>Query:</label>
-        <Snippet :data="query" language="graphql" />
+        <label>Selling:</label>
+        <div class="select-wrapper">
+          <select v-model="selling" class="select">
+            <option
+              v-for="option in currencies"
+              :value="option.value"
+              :key="option.value"
+              >{{ option.label }}</option
+            >
+          </select>
+        </div>
+        <label>Buying:</label>
+        <div class="select-wrapper">
+          <select v-model="buying" class="select">
+            <option
+              v-for="option in currencies"
+              :value="option.value"
+              :key="option.value"
+              >{{ option.label }}</option
+            >
+          </select>
+        </div>
       </template>
       <template v-slot:result>
-        <label>Result:</label>
-        <Snippet
-          :data="result"
-          :error="error"
-          :loading="loading"
-          language="json"
-        />
+        <label>Best Bid:</label>
+        <div class="value">
+          <template v-if="!loading">{{ tick.bestBid }}</template>
+          <template v-else
+            >Loading...</template
+          >
+        </div>
+
+        <label>Best Ask:</label>
+        <div class="value">
+          <template v-if="!loading">{{ tick.bestAsk }}</template>
+          <template v-else
+            >Loading...</template
+          >
+        </div>
       </template>
     </Panels>
   </div>
 </template>
+
+<style scoped>
+.select-wrapper {
+  height: 24px;
+  margin: 0 0 10px;
+}
+
+.value {
+  margin-bottom: 10px;
+  font-size: 24px;
+  line-height: 1;
+}
+</style>
