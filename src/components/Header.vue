@@ -31,8 +31,7 @@ export default {
 .header {
   display: flex;
   height: 325px;
-  padding: 0 0 0 40px;
-  margin: 0 -20px -195px -240px;
+  margin: 0 0 -195px -200px;
   background: url("../assets/background.svg") no-repeat;
 }
 
@@ -57,5 +56,17 @@ export default {
   width: 177px;
   height: 163px;
   margin-right: 23px;
+}
+
+@media (max-width: 1360px) {
+  .header {
+    padding: 0;
+    margin: 0 0 -195px 0;
+    background: none;
+  }
+
+  .logo {
+    display: none;
+  }
 }
 </style>
