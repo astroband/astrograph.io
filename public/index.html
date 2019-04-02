@@ -3,14 +3,40 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
     <title>Astrograph</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KQNGZJ5');</script>
+    <!-- End Google Tag Manager -->
   </head>
+  
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQNGZJ5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <noscript>
-      <strong>We're sorry but astrograph-landing doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <h1>Astrograph</h1>
+      <h2>GraphQL interface to Stellar blockchain. Access Stellar ledger via GraphQL</h2>
+
+      <p>
+        Astrograph is a GraphQL server for the <a href="https://www.stellar.org/" rel="nofollow">Stellar</a> network. You can think about it as a GraphQL version of <a href="https://github.com/stellar/go/tree/master/services/horizon" rel="nofollow">Horizon</a>, the client-facing API server for the Stellar ecosystem.
+      </p>
+
+      <p>
+        Astrograph allows you to retrieve various data from the blockchain, as well as allowing you to subscribe to particular events using <a href="https://github.com/apollographql/graphql-subscriptions" rel="nofollow">GraphQL subscriptions</a> mechanisms.
+      </p>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
