@@ -3,6 +3,7 @@
     <img src="../assets/logo.png" alt="Logo" class="logo" />
     <div class="desc">
       <img src="../assets/textlogo.svg" alt="Astrograph" />
+      <span class="beta">𝛃</span>
       <div>GraphQL interface to Stellar blockchain</div>
     </div>
     <div class="buttons">
@@ -34,6 +35,12 @@ export default {
   height: 325px;
   margin: 0 0 -195px -200px;
   background: url("../assets/background.svg") no-repeat;
+}
+
+.beta {
+  position: absolute;
+  font-size: 12px;
+  color: #fff;
 }
 
 .desc {
