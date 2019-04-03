@@ -29,9 +29,7 @@ query($id: AccountID!) {
       authorized
     }
     signers {
-      signer {
-        id
-      }
+      signer
       weight
     }
     data {
