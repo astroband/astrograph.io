@@ -43,7 +43,7 @@ body {
 label {
   display: inline-block;
   margin-bottom: 6px;
-  font-weight: 900;
+  font-weight: 600;
   color: #fff;
 }
 
