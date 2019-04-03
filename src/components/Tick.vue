@@ -74,9 +74,9 @@ export default {
       <template v-slot:query>
         <div class="selects">
           <div class="select-group">
-            <label>Selling:</label>
+            <label for="selling">Selling:</label>
             <div class="select-wrapper">
-              <select v-model="selling" class="select">
+              <select v-model="selling" id="selling" class="select">
                 <option
                   v-for="option in currencies"
                   :value="option.value"
@@ -87,9 +87,9 @@ export default {
             </div>
           </div>
           <div class="select-group">
-            <label>Buying:</label>
+            <label for="buying">Buying:</label>
             <div class="select-wrapper">
-              <select v-model="buying" class="select">
+              <select v-model="buying" id="buying" class="select">
                 <option
                   v-for="option in currencies"
                   :value="option.value"
