@@ -11,10 +11,10 @@
         href="https://astrograph.evilmartians.io/graphql"
         class="button"
       >
-        <img src="../assets/demo.svg" class="icon" />Demo
+        <img src="../assets/demo.svg" alt class="icon" />Demo
       </ButtonLink>
       <ButtonLink href="https://github.com/astroband/astrograph" hollow>
-        <img src="../assets/github.svg" class="icon" />Github
+        <img src="../assets/github.svg" alt class="icon" />Github
       </ButtonLink>
     </div>
   </div>

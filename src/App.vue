@@ -53,6 +53,11 @@ h1 {
   color: #fff;
 }
 
+b,
+strong {
+  font-weight: 600;
+}
+
 input {
   display: block;
   box-sizing: border-box;
