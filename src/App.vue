@@ -58,6 +58,17 @@ strong {
   font-weight: 600;
 }
 
+a {
+  text-decoration: none;
+  color: #b8e986;
+}
+
+a:hover,
+a:focus {
+  opacity: 0.6;
+  outline: none;
+}
+
 input {
   display: block;
   box-sizing: border-box;

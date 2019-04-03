@@ -45,12 +45,6 @@ export default {
   background: #b8e986;
 }
 
-.wrapper:hover,
-.wrapper:focus {
-  opacity: 0.6;
-  outline: none;
-}
-
 .hollow {
   color: #b8e986;
   background: none;
