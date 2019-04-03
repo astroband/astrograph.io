@@ -22,7 +22,7 @@ export default {
         return { selling: this.selling, buying: this.buying };
       },
       error(error) {
-        this.error = error;
+        this.error = !!error;
       }
     }
   },

@@ -15,7 +15,7 @@ export default {
         this.result = JSON.stringify(data, null, 2);
       },
       error(error) {
-        this.error = error;
+        this.error = !!error;
       }
     });
   },

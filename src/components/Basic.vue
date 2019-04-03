@@ -12,7 +12,7 @@ export default {
         return { id: this.id };
       },
       error(error) {
-        this.error = error;
+        this.error = !!error;
       }
     }
   },
