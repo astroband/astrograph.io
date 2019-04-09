@@ -13,12 +13,12 @@ const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
   httpEndpoint:
     process.env.VUE_APP_GRAPHQL_HTTP ||
-    "https://astrograph.evilmartians.io/graphql",
+    "https://demo.astrograph.io/graphql",
   // You can use `wss` for secure connection (recommended in production)
   // Use `null` to disable subscriptions
   // wsEndpoint:
   //  process.env.VUE_APP_GRAPHQL_WS ||
-  //  "wss://astrograph.evilmartians.io/graphql",
+  //  "wss://demo.astrograph.io/graphql",
   // LocalStorage token
   tokenName: AUTH_TOKEN,
   // Enable Automatic Query persisting with Apollo Engine

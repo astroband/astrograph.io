@@ -11,7 +11,7 @@ export default {
   <div class="footer">
     <p>Discover more Astrograph features using our public GraphQL console.</p>
 
-    <ButtonLink href="https://astrograph.evilmartians.io/graphql" class="button"
+    <ButtonLink href="https://demo.astrograph.io/graphql" class="button"
       >Demo</ButtonLink
     >
 

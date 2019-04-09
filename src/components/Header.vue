@@ -8,7 +8,7 @@
     </div>
     <div class="buttons">
       <ButtonLink
-        href="https://astrograph.evilmartians.io/graphql"
+        href="https://demo.astrograph.io/graphql"
         class="button"
       >
         <img src="../assets/demo.svg" alt class="icon" />Demo
