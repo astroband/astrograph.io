@@ -20,6 +20,7 @@ export default {
 <template>
   <div class="content">
     <Header />
+    <p class="intro"><a href="https://evilmartians.com/chronicles/try-astrograph-your-graphql-lens-for-stellar-blockchain" target="_blank" rel="noopener">Blockchain meets GraphQL with the beta release of Astrograph</a>—a robust Node/TypeScript server that provides a single endpoint to explore the entirety of Stellar network. It also offers reliable WebSocket-based subscriptions, allowing you to build real-time tools for the mature distributed ecosystem faster and with less effort.</p>
     <Basic />
     <Tick />
     <Subscriptions />
@@ -99,10 +100,18 @@ input {
   width: 960px;
 }
 
+.intro {
+  margin-top: 50px;
+}
+
 @media (max-width: 999px) {
   .content {
     width: auto;
     padding: 0 10px;
+  }
+
+  .intro {
+    margin-top: 20px;
   }
 }
 </style>
