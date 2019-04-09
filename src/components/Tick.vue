@@ -4,12 +4,20 @@ import query from "../graphql/tick.gql";
 
 const CURRENCIES = [
   {
+    label: "XLM",
+    value: "native"
+  },
+  {
     label: "USD",
     value: "USD-GBSTRUSD7IRX73RQZBL3RQUH6KS3O4NYFY3QCALDLZD77XMZOPWAVTUK"
   },
   {
     label: "ETH",
     value: "ETH-GBSTRH4QOTWNSVA6E4HFERETX4ZLSR3CIUBLK7AXYII277PFJC4BBYOG"
+  },
+  {
+    label: "BTC",
+    value: "BTC-GBSTRH4QOTWNSVA6E4HFERETX4ZLSR3CIUBLK7AXYII277PFJC4BBYOG"
   }
 ];
 
@@ -69,7 +77,10 @@ export default {
 <template>
   <div>
     <h1>Tick</h1>
-    <p>Tick description.</p>
+    <p>
+      Get the best bid/ask pricing for any pair of assets with a dedicated tick
+      <a href="https://github.com/astroband/astrograph-landing/blob/master/src/graphql/tick.gql">subscription</a>.
+    </p>
     <Panels>
       <template v-slot:query>
         <div class="selects">
