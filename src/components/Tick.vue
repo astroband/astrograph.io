@@ -1,6 +1,7 @@
 <script>
 import Panels from "./Panels.vue";
 import query from "../graphql/tick.gql";
+import document from "../graphql/tick-subscription.gql";
 
 const CURRENCIES = [
   {
@@ -26,6 +27,12 @@ export default {
   apollo: {
     tick: {
       query,
+      subscribeToMore: {
+        document,
+        variables () {
+          return { selling: this.selling, buying: this.buying };
+        }
+      },
       variables() {
         return { selling: this.selling, buying: this.buying };
       },
