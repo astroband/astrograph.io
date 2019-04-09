@@ -42,8 +42,8 @@ export default {
   <div>
     <h1>Basic query</h1>
     <p>
-      Let's try to fetch account current state including it's signers, data
-      entries and trust lines via GraphQL.
+      Let's try to fetch account current state including it's signers, balances and data
+      entries via GraphQL.
     </p>
     <div class="input">
       <label for="id">Account ID:</label>
