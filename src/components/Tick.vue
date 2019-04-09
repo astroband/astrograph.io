@@ -42,14 +42,17 @@ export default {
     }
   },
   computed: {
-    result: function() {
-      return this.tick && JSON.stringify(this.tick, null, 2);
-    },
     query: function() {
       return query.loc.source.body;
     },
     loading: function() {
       return this.$apollo.queries.tick.loading;
+    },
+    bestBidRounded: function() {
+      return Number.parseFloat(this.tick.bestBid).toFixed(7);
+    },
+    bestAskRounded: function() {
+      return Number.parseFloat(this.tick.bestAsk).toFixed(7);
     }
   },
   data() {
@@ -122,7 +125,7 @@ export default {
       <template v-slot:result>
         <label>Best Bid:</label>
         <div class="value">
-          <template v-if="!loading">{{ tick.bestBid }}</template>
+          <template v-if="!loading">{{ bestBidRounded }}</template>
           <template v-else
             >Loading...</template
           >
@@ -130,7 +133,7 @@ export default {
 
         <label>Best Ask:</label>
         <div class="value">
-          <template v-if="!loading">{{ tick.bestAsk }}</template>
+          <template v-if="!loading">{{ bestAskRounded }}</template>
           <template v-else
             >Loading...</template
           >
