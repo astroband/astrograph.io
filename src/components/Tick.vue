@@ -31,6 +31,9 @@ export default {
         document,
         variables () {
           return { selling: this.selling, buying: this.buying };
+        },
+        updateQuery: (previousResult, { subscriptionData }) => {
+          return subscriptionData.data;
         }
       },
       variables() {
