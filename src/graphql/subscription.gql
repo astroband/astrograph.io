@@ -1,5 +1,5 @@
 subscription {
-  trustLine(args: {}) {
+  balance(args: {}) {
     mutationType
     account {
       id
