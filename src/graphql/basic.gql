@@ -16,7 +16,7 @@ query($id: AccountID!) {
     ledger {
       seq
     }
-    trustLines {
+    balances {
       asset {
         native
         issuer {
