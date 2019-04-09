@@ -19,7 +19,9 @@ query($id: AccountID!) {
     trustLines {
       asset {
         native
-        issuer
+        issuer {
+          id
+        }
         code
       }
       balance
@@ -27,9 +29,7 @@ query($id: AccountID!) {
       authorized
     }
     signers {
-      signer {
-        id
-      }
+      signer
       weight
     }
     data {

@@ -1,0 +1,6 @@
+query($selling: AssetID!, $buying: AssetID!) {
+  tick(selling: $selling, buying: $buying) {
+    bestBid
+    bestAsk
+  }
+}

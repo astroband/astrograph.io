@@ -1,0 +1,32 @@
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.+([0-9a-f]).@(css|js|svg|jpg|jpeg|gif|png)",
+        "headers": [ {
+          "key": "Cache-Control",
+          "value": "max-age=31536000"
+        } ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/humans.txt",
+        "destination": "/martians.txt",
+        "type": 301
+      }
+    ]
+  }
+}
