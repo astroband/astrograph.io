@@ -29,7 +29,7 @@ export default {
       query,
       subscribeToMore: {
         document,
-        variables () {
+        variables() {
           return { selling: this.selling, buying: this.buying };
         },
         updateQuery: (previousResult, { subscriptionData }) => {
@@ -52,10 +52,14 @@ export default {
       return this.$apollo.queries.tick.loading;
     },
     bestBidRounded: function() {
-      return Number.parseFloat(this.tick.bestBid).toFixed(7);
+      return this.tick.bestBid
+        ? Number.parseFloat(this.tick.bestBid).toFixed(7)
+        : "No bids";
     },
     bestAskRounded: function() {
-      return Number.parseFloat(this.tick.bestAsk).toFixed(7);
+      return this.tick.bestAsk
+        ? Number.parseFloat(this.tick.bestAsk).toFixed(7)
+        : "No asks";
     }
   },
   data() {
@@ -64,7 +68,7 @@ export default {
       buying: "native",
       currencies: CURRENCIES,
       error: null,
-      tick: null
+      tick: {}
     };
   },
   watch: {
@@ -92,7 +96,10 @@ export default {
     <h1>Tick</h1>
     <p>
       Get the best bid/ask pricing for any pair of assets with a dedicated tick
-      <a href="https://github.com/astroband/astrograph-landing/blob/master/src/graphql/tick.gql">subscription</a>.
+      <a
+        href="https://github.com/astroband/astrograph-landing/blob/master/src/graphql/tick.gql"
+        >subscription</a
+      >.
     </p>
     <Panels>
       <template v-slot:query>
