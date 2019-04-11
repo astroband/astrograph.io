@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       selling: "USD-GBSTRUSD7IRX73RQZBL3RQUH6KS3O4NYFY3QCALDLZD77XMZOPWAVTUK",
-      buying: "ETH-GBSTRH4QOTWNSVA6E4HFERETX4ZLSR3CIUBLK7AXYII277PFJC4BBYOG",
+      buying: "native",
       currencies: CURRENCIES,
       error: null,
       tick: null

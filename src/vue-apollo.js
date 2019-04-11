@@ -7,18 +7,15 @@ Vue.use(VueApollo);
 
 // Name of the localStorage item
 const AUTH_TOKEN = "apollo-token";
-
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
   httpEndpoint:
-    process.env.VUE_APP_GRAPHQL_HTTP ||
-    "https://demo.astrograph.io/graphql",
+    process.env.VUE_APP_GRAPHQL_HTTP || "https://demo.astrograph.io/graphql",
   // You can use `wss` for secure connection (recommended in production)
   // Use `null` to disable subscriptions
   wsEndpoint:
-    process.env.VUE_APP_GRAPHQL_WS ||
-    "wss://demo.astrograph.io/graphql",
+    process.env.VUE_APP_GRAPHQL_WS || "wss://demo.astrograph.io/graphql",
   // LocalStorage token
   tokenName: AUTH_TOKEN,
   // Enable Automatic Query persisting with Apollo Engine
