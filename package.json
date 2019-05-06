@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "docs:schema": "graphdoc -f",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "apollo-client": "^2.0.0",
@@ -17,6 +19,7 @@
     "vue-json-pretty": "^1.4.1"
   },
   "devDependencies": {
+    "@2fd/graphdoc": "^2.4.0",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
@@ -26,9 +29,14 @@
     "babel-plugin-prismjs": "^1.0.2",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "firebase-tools": "^6.8.0",
     "graphql-tag": "^2.9.0",
     "vue-cli-plugin-apollo": "^0.19.1",
     "vue-template-compiler": "^2.6.2",
     "webpack": "^4.29.2"
+  },
+  "graphdoc": {
+    "endpoint": "https://demo.astrograph.io/graphql",
+    "output": "./dist/docs/schema"
   }
 }

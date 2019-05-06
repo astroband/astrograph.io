@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist",
+    "cleanUrls": "true",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -23,10 +24,16 @@
     ],
     "redirects": [
       {
+        "source": "/docs{,/}",
+        "destination": "/docs/schema/",
+        "type": 302
+      },
+      {
         "source": "/humans.txt",
         "destination": "/martians.txt",
         "type": 301
       }
-    ]
+    ],
+    "predeploy": "yarn build && yarn docs:schema"
   }
 }
