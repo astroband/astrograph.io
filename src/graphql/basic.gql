@@ -8,11 +8,6 @@ query($id: AccountID!) {
       high
       masterWeight
     }
-    flags {
-      authRequired
-      authRevocable
-      authImmutable
-    }
     ledger {
       seq
     }
