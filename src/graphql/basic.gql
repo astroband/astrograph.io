@@ -10,7 +10,7 @@ query($id: AccountID!) {
     }
     flags {
       authRequired
-      authRevokable
+      authRevocable
       authImmutable
     }
     ledger {
