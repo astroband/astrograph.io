@@ -14,6 +14,20 @@
           "key": "Cache-Control",
           "value": "max-age=31536000"
         } ]
+      },
+      {
+        "source": "**/*.toml",
+        "headers": [ {
+          "key": "Content-Type",
+          "value": "text/toml"
+        } ]
+      },
+      {
+        "source": ".well-known/**/*.*",
+        "headers": [ {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        } ]
       }
     ],
     "rewrites": [
