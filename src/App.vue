@@ -21,15 +21,25 @@ export default {
   <div class="content">
     <Header />
     <p class="intro">
+    Astrograph is a framework that lowers the entry threshold to the Stellar ecosystem and makes it possible to develop Stellar-based applications in hours, not weeks—significantly reducing Stellar application development costs and time-to-market.
+    </p>
+    <p>
+    Instead of doing complex requests using old-school APIs and writing own tooling, developers can use Astrograph to search the ledger using a single GraphQL interface and Astrograph's own Stellar core data ingester. 
+    </p>
+    <p>
+    Astrograph aims to provide a full-featured GraphQL interface to Stellar network, making the ecosystem more appealing to developers and lowering the entry barrier. Since its first release in April 2019, Astrograph provides access to the current and historical state of the ledger, including real-time updates about ongoing changes—all available through a single GraphQL endpoint. 
+    </p>
+    <p>
+      Check our
       <a
         href="https://evilmartians.com/chronicles/try-astrograph-your-graphql-lens-for-stellar-blockchain"
         target="_blank"
         rel="noopener"
-        >Blockchain meets GraphQL with the beta release of Astrograph</a
-      >—a robust Node/TypeScript server that provides a single endpoint to
-      explore the entirety of Stellar network. It also offers reliable
-      WebSocket-based subscriptions, allowing you to build real-time tools for
-      the mature distributed ecosystem faster and with less effort.
+      >blog post</a>
+      to get more details about the project.
+    </p>
+    <p>
+    Are you building a product based on a Stellar network and think you can benefit from Astrograph's flexibility and ease of use? Do you need help with integrating Astrograph to your Stellar-based project? Get in touch with us at <a href="mailto:astrograph@evilmartians.com">astrograph@evilmartians.com</a>.    
     </p>
     <Basic />
     <Tick />
