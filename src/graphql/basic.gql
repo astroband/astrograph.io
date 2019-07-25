@@ -13,7 +13,7 @@ query($id: AccountID!) {
     }
     balances {
       asset {
-        native
+        id
         issuer {
           id
         }
