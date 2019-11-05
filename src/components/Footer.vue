@@ -9,9 +9,9 @@ export default {
 
 <template>
   <div class="footer">
-    <p>Discover more Astrograph features using our public GraphQL console.</p>
+    <p>Discover more Astrograph features using our GraphQL console for Testnet.</p>
 
-    <ButtonLink href="https://demo.astrograph.io/graphql" class="button"
+    <ButtonLink href="https://testnet.astrograph.io" class="button"
       >Demo</ButtonLink
     >
 
