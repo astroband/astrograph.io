@@ -9,25 +9,23 @@
     ],
     "headers": [
       {
-        "source": "**/*.+([0-9a-f]).@(css|js|svg|jpg|jpeg|gif|png)",
-        "headers": [ {
-          "key": "Cache-Control",
-          "value": "max-age=31536000"
-        } ]
+        "source": "**/*.toml",
+        "headers": [
+          { "key": "Content-Type", "value": "text/toml" }
+        ]
       },
       {
-        "source": "**/*.toml",
-        "headers": [ {
-          "key": "Content-Type",
-          "value": "text/toml"
-        } ]
+        "source": "**/*.+([0-9a-f]).@(css|js|svg|jpg|jpeg|gif|png)",
+        "headers": [
+          { "key": "Cache-Control", "value": "max-age=31536000" },
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
       },
       {
         "source": ".well-known/**/*.*",
-        "headers": [ {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        } ]
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
       }
     ],
     "rewrites": [
