@@ -1,13 +1,6 @@
 module.exports = {
-  presets: ["@vue/app"],
-  plugins: [
-    [
-      "prismjs",
-      {
-        languages: ["graphql", "json"]
-      }
-    ]
-  ],
+  presets: ["@vue/babel-preset-app"],
+  plugins: [["prismjs", { languages: ["graphql", "json"] }]],
   sourceMaps: "inline",
   inputSourceMap: false
 };
