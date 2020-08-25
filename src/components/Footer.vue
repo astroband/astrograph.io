@@ -9,7 +9,7 @@ export default {
 
 <template>
   <div class="footer">
-    <p>Discover more Astrograph features using our GraphQL console for Testnet.</p>
+    <p>Discover more Astrograph features using our public GraphQL console.</p>
 
     <ButtonLink href="https://pubnet.astrograph.io" class="button"
       >Demo</ButtonLink
