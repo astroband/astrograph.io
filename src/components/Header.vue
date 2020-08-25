@@ -7,7 +7,7 @@
       <div>GraphQL interface to Stellar blockchain</div>
     </div>
     <div class="buttons">
-      <ButtonLink href="https://testnet.astrograph.io" class="button">
+      <ButtonLink href="https://pubnet.astrograph.io" class="button">
         <img src="../assets/demo.svg" alt class="icon" />Demo
       </ButtonLink>
       <ButtonLink href="https://github.com/astroband/astrograph" hollow>

@@ -38,7 +38,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "graphdoc": {
-    "endpoint": "https://demo.astrograph.io/graphql",
+    "endpoint": "https://pubnet.astrograph.io/graphql",
     "output": "./dist/docs/schema"
   },
   "postcss": {

@@ -11,7 +11,7 @@ export default {
   <div class="footer">
     <p>Discover more Astrograph features using our GraphQL console for Testnet.</p>
 
-    <ButtonLink href="https://testnet.astrograph.io" class="button"
+    <ButtonLink href="https://pubnet.astrograph.io" class="button"
       >Demo</ButtonLink
     >
 
