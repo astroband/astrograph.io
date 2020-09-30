@@ -49,12 +49,13 @@ export default {
       to get more details about the project.
     </p>
     <p>
-      Astrograph won 1st place in the 
+      Astrograph won 1st place in the
       <a
         href="https://medium.com/stellar-community/stellar-community-fund-round-1-winners-1957314d15cc"
         target="_blank"
         rel="noopener"
-        >Stellar Community Fund Round 1</a>.
+        >Stellar Community Fund Round 1</a
+      >.
     </p>
     <!--h1>Get support</h1-->
     <p>

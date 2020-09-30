@@ -38,18 +38,12 @@ export default {
 
 <template>
   <div :class="['snippet', { error: error, loading: loading }]">
-    <template v-if="loading"
-      >Loading...</template
-    >
-    <template v-else-if="error"
-      >An error occured</template
-    >
+    <template v-if="loading">Loading...</template>
+    <template v-else-if="error">An error occured</template>
     <template v-else-if="data">
       <div v-html="code"></div>
     </template>
-    <template v-else
-      >No result :(</template
-    >
+    <template v-else>No result :(</template>
   </div>
 </template>
 

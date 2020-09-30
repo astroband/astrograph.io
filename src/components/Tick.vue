@@ -136,17 +136,13 @@ export default {
         <label>Best Bid:</label>
         <div class="value">
           <template v-if="!loading">{{ bestBidRounded }}</template>
-          <template v-else
-            >Loading...</template
-          >
+          <template v-else>Loading...</template>
         </div>
 
         <label>Best Ask:</label>
         <div class="value">
           <template v-if="!loading">{{ bestAskRounded }}</template>
-          <template v-else
-            >Loading...</template
-          >
+          <template v-else>Loading...</template>
         </div>
       </template>
     </Panels>
