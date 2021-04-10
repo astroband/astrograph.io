@@ -2,18 +2,19 @@
 #
 # https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md
 
-VERSION="2.1.0"
+VERSION="2.2.1"
 NETWORK_PASSPHRASE="Public Global Stellar Network ; September 2015"
 FEDERATION_SERVER="https://stellarid.io/federation/"
 ACCOUNTS=[
   "GDMAU3NHV4H7NZF5PY6O6SULIUKIIHPRYOKM7HMREK4BW65VHMDKNM6M",
   "GDB42WFNRYO66UEMEHIYHAF4I235HG2SIPCC64QLVHSHYH3ZXES7ENQG",
+  "GA7ZMJ4ZVESLYYZCQIAQBELF6PPSHUQGUYEKEWSUGFZRJPIKKXKSHNLC",
 ]
 
 [DOCUMENTATION]
 ORG_DBA = "Astrograph"
 ORG_GITHUB = "astroband"
-ORG_KEYBASE = "astrograph"
+ORG_KEYBASE = "astrograph.public"
 ORG_LOGO = "https://astrograph.io/logo.svg"
 ORG_NAME = "Astrograph Open Source Project"
 ORG_OFFICIAL_EMAIL = "team@astrograph.io"
@@ -46,7 +47,13 @@ telegram = "charlie_wasp"
 twitter = "charlie_wasp"
 
 [[VALIDATORS]]
-ALIAS = "astrocore-do"
-DISPLAY_NAME = "Astrograph (Netherlands)"
+ALIAS = "astrocore_1"
+DISPLAY_NAME = "Astrograph Pubnet Core 1"
 PUBLIC_KEY = "GDMAU3NHV4H7NZF5PY6O6SULIUKIIHPRYOKM7HMREK4BW65VHMDKNM6M"
-HOST = "do01.astrograph.io"
+HOST = "core-1.pubnet.astrograph.io"
+
+[[VALIDATORS]]
+ALIAS = "astrocore_2"
+DISPLAY_NAME = "Astrograph Pubnet Core 2"
+PUBLIC_KEY = "GA7ZMJ4ZVESLYYZCQIAQBELF6PPSHUQGUYEKEWSUGFZRJPIKKXKSHNLC"
+HOST = "core-2.pubnet.astrograph.io"
