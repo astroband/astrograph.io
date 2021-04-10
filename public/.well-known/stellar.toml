@@ -13,6 +13,7 @@ ACCOUNTS=[
 
 [DOCUMENTATION]
 ORG_DBA = "Astrograph"
+ORG_DESCRIPTION = "Open-source GraphQL server for Stellar network. Developed and maintained by Evil Martians."
 ORG_GITHUB = "astroband"
 ORG_KEYBASE = "astrograph.public"
 ORG_LOGO = "https://astrograph.io/logo.svg"
