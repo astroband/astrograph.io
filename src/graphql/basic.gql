@@ -14,14 +14,9 @@ query($id: AccountID!) {
     balances {
       asset {
         id
-        issuer {
-          id
-        }
-        code
       }
       balance
       limit
-      authorized
     }
     signers {
       signer

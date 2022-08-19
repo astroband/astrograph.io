@@ -7,10 +7,8 @@ subscription {
     values {
       balance
       asset {
+        id
         code
-        issuer {
-          id
-        }
       }
     }
   }
