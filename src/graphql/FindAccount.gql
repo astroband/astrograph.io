@@ -1,4 +1,4 @@
-query($id: AccountID!) {
+query FindAccount($id: AccountID!) {
   account(id: $id) {
     id
     sequenceNumber

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   crossorigin: "anonymous",
   integrity: true,
 
@@ -9,4 +9,4 @@ module.exports = {
       lintGQL: true
     }
   }
-};
+}

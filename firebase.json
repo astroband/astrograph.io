@@ -1,7 +1,7 @@
 {
   "hosting": {
     "public": "dist",
-    "cleanUrls": "true",
+    "cleanUrls": true,
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -65,6 +65,6 @@
         "type": 301
       }
     ],
-    "predeploy": "yarn build && yarn docs:schema"
+    "predeploy": "pnpm build && pnpm run docs:schema"
   }
 }

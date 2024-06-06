@@ -1,4 +1,4 @@
-query($selling: AssetID!, $buying: AssetID!) {
+subscription OnBestAskBid($selling: AssetID!, $buying: AssetID!) {
   tick(selling: $selling, buying: $buying) {
     bestBid
     bestAsk

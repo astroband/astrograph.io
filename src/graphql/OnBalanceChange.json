@@ -1,0 +1,22 @@
+{
+  "balance": {
+    "account": {
+      "id": "GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5SZVTGWUKULZJNL6"
+    },
+    "mutationType": "UPDATE",
+    "asset": {
+      "id": "USDC-GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
+      "code": "USDC",
+      "issuer": {
+        "id": "GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN"
+      }
+    },
+    "values": {
+      "asset": {
+        "id": "USDC-GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN"
+      },
+      "balance": "2189.2100000",
+      "limit": "922337203685.4775807"
+    }
+  }
+}
