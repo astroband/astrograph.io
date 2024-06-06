@@ -1,0 +1,1201 @@
+"""
+Represents a single [account](https://www.stellar.org/developers/guides/concepts/accounts.html) on Stellar network
+"""
+type Account {
+  """
+  Account's [public key](https://www.stellar.org/developers/guides/concepts/accounts.html#account-id)
+  """
+  id: AccountID!
+
+  """The current transaction sequence number of the account"""
+  sequenceNumber: String!
+
+  """
+  Number of other [entries](https://www.stellar.org/developers/guides/concepts/ledger.html#ledger-entries) the account owns
+  """
+  numSubentries: Int!
+
+  """A minimum balance of luments account must maintain"""
+  reservedBalance: String!
+
+  """
+  Account designated to receive [inflation](https://www.stellar.org/developers/guides/concepts/inflation.html)
+  """
+  inflationDestination: Account
+
+  """
+  A domain name that can be added to the account. [More info](https://www.stellar.org/developers/guides/concepts/accounts.html#home-domain)
+  """
+  homeDomain: String
+
+  """Thresholds for different access levels this account set"""
+  thresholds: AccountThresholds!
+
+  """
+  [Signers](https://www.stellar.org/developers/guides/concepts/multi-sig.html) of the account
+  """
+  signers: [Signer]
+
+  """Ledger, in which account was modified last time"""
+  ledger: Ledger!
+
+  """
+  [Data entries](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-data), attached to the account
+  """
+  data: [DataEntry]
+
+  """All assets, issued by this account"""
+  assets(first: Int, after: String, last: Int, before: String): AssetConnection
+
+  """
+  [Balances](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) of this account
+  """
+  balances: [Balance]
+
+  """
+  A list of [operations](https://www.stellar.org/developers/guides/concepts/operations.html) on the Stellar network that the account performed
+  """
+  operations(type: [OperationType], first: Int, after: String, last: Int, before: String, order: Order): OperationConnection
+
+  """
+  A list of payment-related operations where the given account was either the sender or receiver
+  The payment-related operations are:
+  
+    - create account
+    - payment
+    - path payment
+    - account merge
+  """
+  payments(first: Int, after: String, last: Int, before: String): OperationConnection
+  trades(first: Int, after: String, last: Int, before: String): TradeConnection
+  transactions(first: Int, last: Int, before: String, after: String): TransactionConnection
+
+  """A list of offers, created by this account"""
+  offers(selling: AssetID, buying: AssetID, first: Int, after: String, last: Int, before: String): OfferConnection
+}
+
+type AccountConnection {
+  pageInfo: PageInfo!
+  nodes: [Account]
+  edges: [AccountEdge]
+}
+
+type AccountEdge {
+  cursor: String!
+  node: Account
+}
+
+enum AccountFlagsOptions {
+  authRequired
+  authImmutable
+  authRevokable
+}
+
+"""
+Represents the [public key](https://www.stellar.org/developers/guides/concepts/accounts.html#account-id)
+of the particular account
+"""
+scalar AccountID
+
+"""
+Represents [account merge operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#account-merge)
+"""
+type AccountMergeOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """
+  The account that receives the remaining XLM balance of the source account
+  """
+  destination: Account!
+}
+
+"""
+Represents an account update payload, which is broadcasting to subscribers
+"""
+type AccountSubscriptionPayload {
+  id: AccountID!
+  mutationType: MutationType!
+  values: AccountValues
+}
+
+"""
+Represents [thresholds](https://www.stellar.org/developers/guides/concepts/accounts.html#thresholds) for different access levels
+"""
+type AccountThresholds {
+  """The weight of the master key"""
+  masterWeight: Int!
+
+  """
+  The threshold this account sets on all operations it performs that have a low threshold
+  """
+  low: Int!
+
+  """
+  The threshold this account sets on all operations it performs that have a medium threshold
+  """
+  medium: Int!
+
+  """
+  The threshold this account sets on all operations it performs that have a high threshold
+  """
+  high: Int!
+}
+
+"""
+Represents a current account state, which is broadcasted to subscribers on account's update
+"""
+type AccountValues {
+  """
+  Account's [public key](https://www.stellar.org/developers/guides/concepts/accounts.html#account-id)
+  """
+  id: AccountID!
+
+  """The current transaction sequence number of the account"""
+  sequenceNumber: String!
+
+  """
+  Number of other [entries](https://www.stellar.org/developers/guides/concepts/ledger.html#ledger-entries) the account owns
+  """
+  numSubentries: Int!
+
+  """
+  Account designated to receive [inflation](https://www.stellar.org/developers/guides/concepts/inflation.html)
+  """
+  inflationDestination: Account
+
+  """
+  A domain name that can be added to the account. [More info](https://www.stellar.org/developers/guides/concepts/accounts.html#home-domain)
+  """
+  homeDomain: String
+
+  """Thresholds for different access levels this account set"""
+  thresholds: AccountThresholds!
+
+  """
+  [Signers](https://www.stellar.org/developers/guides/concepts/multi-sig.html) of the account
+  """
+  signers: [Signer]
+}
+
+"""
+Represents [allow trust operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#allow-trust)
+"""
+type AllowTrustOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """The account of the recipient of the trustline"""
+  trustor: Account!
+
+  """Flag indicating whether the trustline is authorized"""
+  authorize: Boolean!
+
+  """The asset of the trustline the source account is authorizing"""
+  asset: Asset!
+}
+
+"""
+Represents single [asset](https://www.stellar.org/developers/guides/concepts/assets.html) on Stellar network
+"""
+type Asset {
+  id: AssetID!
+
+  """Asset issuer's account. It's `null` for native lumens"""
+  issuer: Account
+
+  """Asset's code"""
+  code: AssetCode!
+
+  """Sum of all asset holders balances"""
+  totalSupply: String!
+
+  """Sum of only authorized holders balances"""
+  circulatingSupply: String!
+
+  """Total number of asset holders"""
+  holdersCount: Int!
+
+  """Total number of unathorized holders"""
+  unauthorizedHoldersCount: Int!
+
+  """Ledger this asset was last time modified in"""
+  lastModifiedIn: Ledger!
+
+  """
+  Requires the issuing account to give other accounts permission before they can hold the issuing account’s credit
+  """
+  authRequired: Boolean!
+
+  """Allows the issuing account to revoke its credit held by other accounts"""
+  authRevocable: Boolean!
+
+  """
+  If this is set then none of the authorization flags can be set and the account can never be deleted
+  """
+  authImmutable: Boolean!
+
+  """All accounts that trust this asset, ordered by balance"""
+  balances(first: Int, last: Int, after: String, before: String): BalanceConnection
+}
+
+"""Stellar asset alphanumeric code"""
+scalar AssetCode
+
+"""A list of assets"""
+type AssetConnection {
+  pageInfo: PageInfo!
+  nodes: [Asset]
+  edges: [AssetEdge]
+}
+
+type AssetEdge {
+  cursor: String!
+  node: Asset
+}
+
+"""
+String in `{id}-{issuer}'` format, which uniquely identifies single asset. Native lumens has id `'native'`
+"""
+scalar AssetID
+
+"""
+Represents a single [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines)
+of a particular account
+"""
+type Balance {
+  account: Account
+  asset: Asset!
+  limit: String!
+  balance: String!
+
+  """
+  how much of this asset can actually be sent considering selling liabilities (and base reserve for native lumens)
+  """
+  spendableBalance: String!
+
+  """
+  how much of this asset can be received considering the limit and buying liabilities
+  """
+  receivableBalance: String!
+  authorized: Boolean!
+  ledger: Ledger!
+}
+
+type BalanceConnection {
+  pageInfo: PageInfo!
+  nodes: [Balance]
+  edges: [BalanceEdge]
+}
+
+type BalanceEdge {
+  cursor: String!
+  node: Balance
+}
+
+"""
+Represents a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) update payload, which is broadcasting to subscribers
+"""
+type BalanceSubscriptionPayload {
+  account: Account!
+  asset: Asset!
+  mutationType: MutationType!
+  values: BalanceValues
+}
+
+"""
+Represents a current [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines)
+state, which is broadcasting to subscribers
+"""
+type BalanceValues {
+  account: Account
+  asset: Asset!
+  limit: String!
+  balance: String!
+  authorized: Boolean!
+}
+
+"""
+Represents [bump sequence operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#bump-sequence)
+"""
+type BumpSequenceOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Desired value for the operation’s source account sequence number"""
+  bumpTo: Int!
+}
+
+"""
+Represents [change trust operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#change-trust)
+"""
+type ChangeTrustOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """The limit of the trustline"""
+  limit: String!
+
+  """The asset of the trustline"""
+  asset: Asset!
+}
+
+"""
+Represents [create account operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#create-account)
+"""
+type CreateAccountOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Amount of XLM to send to the newly created account"""
+  startingBalance: String!
+
+  """Account address that is created and funded"""
+  destination: Account!
+}
+
+"""
+Represents [create passive offer operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#create-passive-offer)
+"""
+type CreatePassiveSellOfferOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+  priceComponents: OfferPriceComponents!
+  price: String!
+  amount: String!
+  assetSelling: Asset!
+  assetBuying: Asset!
+}
+
+"""
+Represents a [Data Entry](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-data)
+(name/value pair) that is attached to a particular account
+"""
+type DataEntry {
+  name: String!
+  value: String!
+
+  """Ledger sequence this data entry was created at"""
+  ledger: Ledger!
+}
+
+"""
+Represents a Data Entry update payload, which is broadcasting to subscribers
+"""
+type DataEntrySubscriptionPayload {
+  account: Account!
+  name: String!
+  mutationType: MutationType!
+  values: DataEntryValues
+}
+
+"""
+Represents a current [Data Entry](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-data)
+(name/value pair) state, which is broadcasted to subscribers
+"""
+type DataEntryValues {
+  account: Account!
+  name: String!
+  value: String!
+  ledger: Ledger!
+}
+
+input DataInput {
+  name: String
+  value: String
+}
+
+"""A date-time string in ISO 8601 format"""
+scalar DateTime
+
+"""Input type, which represents subscription filtering options"""
+input EventInput {
+  mutationTypeIn: [MutationType!]
+  idEq: AccountID
+  idIn: [AccountID!]
+}
+
+type InflationOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+}
+
+"""
+Represents a [ledger](https://www.stellar.org/developers/guides/concepts/ledger.html)
+"""
+type Ledger {
+  """Sequence number"""
+  seq: LedgerSeq!
+  header: LedgerHeader
+
+  """Transactions that were applied in this ledger"""
+  transactions(first: Int, last: Int, before: String, after: String): TransactionConnection
+
+  """Operations that were performed in this ledger"""
+  operations(first: Int, last: Int, before: String, after: String, order: Order): OperationConnection
+
+  """Payment-like operations that were performed in this ledger"""
+  payments(first: Int, last: Int, before: String, after: String): OperationConnection
+}
+
+"""
+Represents a [ledger header](https://www.stellar.org/developers/guides/concepts/ledger.html#ledger-header)
+"""
+type LedgerHeader {
+  """Protocol version of this ledger"""
+  ledgerVersion: LedgerSeq!
+  previousLedgerHash: String!
+
+  """Hash of the results of applying the transaction set"""
+  txSetResultHash: String!
+
+  """The fee the network charges per operation in a transaction"""
+  baseFee: Int!
+
+  """
+  The reserve the network uses when calculating an account’s minimum balance
+  """
+  baseReserve: Int!
+
+  """
+  The maximum number of transactions the validators have agreed to process in this ledger
+  """
+  maxTxSetSize: Int!
+}
+
+"""Ledger sequence number"""
+scalar LedgerSeq
+
+"""
+Represents [manage buy offer operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-buy-offer)
+"""
+type ManageBuyOfferOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Rational representation of the price"""
+  priceComponents: OfferPriceComponents!
+
+  """Price of 1 unit of `selling` in terms of `buying`"""
+  price: String!
+  offerId: String!
+
+  """Amount of `selling` being sold"""
+  amount: String!
+
+  """Asset the offer creator is selling"""
+  assetSelling: Asset!
+
+  """Asset the offer creator is buying"""
+  assetBuying: Asset!
+}
+
+"""
+Represents [manage data operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-data)
+"""
+type ManageDatumOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+  name: String!
+  value: String
+}
+
+"""
+Represents [manage sell offer operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-sell-offer)
+"""
+type ManageSellOfferOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Rational representation of the price"""
+  priceComponents: OfferPriceComponents!
+
+  """Price of 1 unit of `selling` in terms of `buying`"""
+  price: String!
+  offerId: String!
+
+  """Amount of `selling` being sold"""
+  amount: String!
+
+  """Asset the offer creator is selling"""
+  assetSelling: Asset!
+
+  """Asset the offer creator is buying"""
+  assetBuying: Asset!
+}
+
+"""
+Extra information, attached to the transaction. It is the responsibility of the client to interpret it
+"""
+type Memo {
+  value: MemoValue
+  type: MemoType!
+}
+
+enum MemoType {
+  id
+  text
+  hash
+  return
+  none
+}
+
+"""Arbitrary memo content"""
+scalar MemoValue
+
+type Mutation {
+  submitTransaction(envelopeBase64: String!): TransactionSubmitResponse
+}
+
+"""Stellar ledger entities lifecycle events you can subscribe to"""
+enum MutationType {
+  CREATE
+  UPDATE
+  REMOVE
+}
+
+type Offer {
+  id: OfferID!
+  seller: Account!
+  selling: Asset!
+  buying: Asset!
+  amount: String!
+  price: String!
+  passive: Boolean!
+
+  """The ledger this offer was created in"""
+  ledger: Ledger!
+  trades(first: Int, after: String, last: Int, before: String): TradeConnection!
+}
+
+type OfferConnection {
+  pageInfo: PageInfo!
+  nodes: [Offer]
+  edges: [OfferEdge]
+}
+
+type OfferEdge {
+  cursor: String!
+  node: Offer
+}
+
+"""
+Input type, which represents offer events subscription filtering options
+"""
+input OfferEventInput {
+  mutationTypeIn: [MutationType!]
+  idEq: AccountID
+  idIn: [AccountID!]
+  buyingAssetEq: AssetID
+  sellingAssetEq: AssetID
+}
+
+scalar OfferID
+
+"""
+`{numerator, denominator}` representation of the price
+For example, if you want to sell 30 XLM and buy 5 BTC, the price would be `{5,30}`
+"""
+type OfferPriceComponents {
+  n: Int!
+  d: Int!
+}
+
+"""
+Represents an offer update payload, which is broadcasted to subscribers
+"""
+type OfferSubscriptionPayload {
+  accountID: AccountID!
+  mutationType: MutationType!
+  offerID: OfferID!
+  values: OfferValues
+}
+
+"""Represents a current offer state, which is broadcasted to subscribers"""
+type OfferValues {
+  id: OfferID!
+  seller: Account!
+  selling: Asset!
+  buying: Asset!
+  amount: String!
+  price: String!
+  passive: Boolean!
+}
+
+"""
+Attributes all Stellar [operations](https://www.stellar.org/developers/guides/concepts/operations.html) share
+"""
+interface Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+}
+
+type OperationConnection {
+  pageInfo: PageInfo!
+  nodes: [Operation]
+  edges: [OperationEdge]
+}
+
+type OperationEdge {
+  cursor: String!
+  node: Operation
+}
+
+enum OperationType {
+  payment
+  setOption
+  accountMerge
+  allowTrust
+  bumpSequence
+  changeTrust
+  createAccount
+  manageDatum
+  manageSellOffer
+  manageBuyOffer
+  createPassiveSellOffer
+  pathPaymentStrictReceive
+  inflation
+  pathPaymentStrictSend
+}
+
+"""
+Possible directions in which to order a list of items when provided an `order` argument
+"""
+enum Order {
+  desc
+  asc
+}
+
+"""
+Represents [orderbook](https://www.stellar.org/developers/horizon/reference/endpoints/orderbook-details.html)
+"""
+type OrderBook {
+  bids: [OrderBookItem!]
+  asks: [OrderBookItem!]
+}
+
+"""Represents a bid or an ask on particular asset pair on the exchange"""
+type OrderBookItem {
+  price: String!
+  amount: String!
+}
+
+"""Information about pagination in a connection"""
+type PageInfo {
+  """When paginating backwards, the cursor to continue"""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue"""
+  endCursor: String
+}
+
+"""
+Represents [path payment operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#path-payment)
+"""
+type PathPaymentOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Max send amount"""
+  sendMax: String!
+
+  """
+  Amount of `sourceAsset` sent by the source account. Can be empty for the failed transaction
+  """
+  amountSent: String
+
+  """
+  Amount of `destinationAsset` received by the destination account. Can be empty for the failed transaction
+  """
+  amountReceived: String
+
+  """What asset sender wants receiver to receive in the end"""
+  destinationAsset: Asset!
+
+  """What asset sender wants to send"""
+  sourceAsset: Asset!
+
+  """Payment receiver account"""
+  destinationAccount: Account!
+
+  """
+  The assets (other than send asset and destination asset) involved in the offers the path takes
+  """
+  path: [Asset]
+}
+
+"""
+Represents [path payment operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#path-payment)
+"""
+type PathPaymentStrictSendOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """
+  Minimum amount of `destinationAsset` receiver will get. Can be empty for the failed transaction
+  """
+  destinationMin: String!
+
+  """
+  Amount of `sourceAsset` sent by the source account. Can be empty for the failed transaction
+  """
+  amountSent: String
+
+  """Amount of `destinationAsset` received by the destination account"""
+  amountReceived: String
+
+  """What asset sender wants receiver to receive in the end"""
+  destinationAsset: Asset!
+
+  """What asset sender wants to send"""
+  sourceAsset: Asset!
+
+  """Payment receiver account"""
+  destinationAccount: Account!
+}
+
+"""
+Represents [payment operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#payment)
+"""
+type PaymentOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Account address that received the payment"""
+  destination: Account!
+
+  """Asset that was sent to the destination account"""
+  asset: Asset!
+
+  """Amount of the asset that was sent"""
+  amount: String!
+}
+
+"""
+Represents the a series of assets to route a payment through, from `sourceAsset`
+(the asset debited from the payer) to `destinationAsset` (the asset credited to the payee)
+"""
+type PaymentPath {
+  """The source asset specified in the search that found this path"""
+  sourceAsset: Asset!
+
+  """
+  An estimated cost for making a payment of `destinationAmount` on this path.
+  Suitable for use in a path payments `sendMax` field
+  """
+  sourceAmount: String!
+
+  """The destination asset specified in the search that found this path"""
+  destinationAsset: Asset!
+
+  """The destination amount specified in the search that found this path"""
+  destinationAmount: String!
+
+  """
+  An array of assets that represents the intermediary assets this path hops through
+  """
+  path: [Asset!]
+}
+
+type Query {
+  """Get single asset"""
+  asset(id: AssetID): Asset
+
+  """Get list of assets. Note: native XLM asset isn't included here"""
+  assets(code: AssetCode, issuer: AccountID, first: Int, after: String, last: Int, before: String): AssetConnection
+
+  """Get single account by the id"""
+  account(id: AccountID!): Account
+
+  """Get a lists of accounts by the ids"""
+  accounts(ids: [AccountID!], inflationDestination: AccountID, homeDomain: String, data: DataInput, first: Int, last: Int, after: String, before: String): AccountConnection
+
+  """Get single ledger by its sequence number"""
+  ledger(seq: LedgerSeq!): Ledger!
+
+  """Get list of ledgers by sequence numbers"""
+  ledgers(seq: [LedgerSeq!]!): [Ledger]!
+
+  """Get list of offers"""
+  offers(selling: AssetCode!, buying: AssetCode!, first: Int, after: String, last: Int, before: String): OfferConnection
+
+  """Get current best bid/ask offer for the given pair of assets"""
+  tick(selling: AssetID!, buying: AssetID!): Tick
+
+  """Get single transaction by id"""
+  transaction(id: TransactionHash!): Transaction
+
+  """Get list of transactions"""
+  transactions(first: Int, after: String, last: Int, before: String): TransactionConnection
+
+  """Get list of operations"""
+  operations(type: [OperationType], first: Int, after: String, last: Int, before: String): OperationConnection
+
+  """Get single operation by its id"""
+  operation(id: String): Operation
+
+  """Get order book details"""
+  orderBook(selling: AssetID!, buying: AssetID!, limit: Int): OrderBook
+
+  """Look up for appropriate payment paths"""
+  findPaymentPaths(
+    """
+    The sender’s account id. Any returned path must use a source that the sender can hold
+    """
+    sourceAccountID: AccountID!
+    destinationAsset: AssetID!
+    destinationAmount: String!
+  ): [PaymentPath!]
+
+  """Get list of trades"""
+  trades(assetSold: AssetID, assetBought: AssetID, offer: String, first: Int, after: String, last: Int, before: String): TradeConnection!
+}
+
+"""
+Represents [set options operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#set-options)
+"""
+type SetOptionsOperation implements Operation {
+  """Operation id, assigned by Horizon"""
+  id: String!
+  type: OperationType!
+
+  """Account on which behalf operation was executed"""
+  sourceAccount: Account!
+
+  """When operations was executed"""
+  dateTime: DateTime!
+
+  """Transaction that contains this operation"""
+  transaction: Transaction!
+
+  """Indicates which flags to clear"""
+  clearFlags: [AccountFlagsOptions]
+
+  """Indicates which flags to set"""
+  setFlags: [AccountFlagsOptions]
+
+  """Indicates, which home domain to set on account"""
+  homeDomain: String
+
+  """Indicates value of master weight to set"""
+  masterWeight: Int
+
+  """Account thresholds to set"""
+  thresholds: SetOptionsThresholds
+
+  """Represents a signer to add to the account"""
+  signer: SetOptionsSigner
+
+  """Account to use as the inflation destination"""
+  inflationDestination: Account
+}
+
+type SetOptionsSigner {
+  account: Account
+  weight: Int
+}
+
+type SetOptionsThresholds {
+  low: Int
+  medium: Int
+  high: Int
+}
+
+"""
+Represents a [signers](https://www.stellar.org/developers/guides/concepts/multi-sig.html#additional-signing-keys) of the account
+"""
+type Signer {
+  """Public key of this signer"""
+  signer: AccountID!
+
+  """This signer's weight"""
+  weight: Int!
+  type: SignerType
+}
+
+enum SignerType {
+  ed25519
+  preAuthX
+  hashX
+}
+
+type Subscription {
+  """
+  Subscribe on [trustlines](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) updates
+  """
+  balance(args: EventInput): BalanceSubscriptionPayload
+
+  """
+  Subscribe on [data entries](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-data) updates
+  """
+  dataEntry(args: EventInput): DataEntrySubscriptionPayload
+
+  """Subscribe on account updates"""
+  account(args: EventInput): AccountSubscriptionPayload
+
+  """Subscribe to the new ledger creation event"""
+  ledgerCreated: Ledger
+
+  """Subscribe on offers updates"""
+  offer(args: OfferEventInput): OfferSubscriptionPayload
+
+  """Subscribe on best bid/ask updates"""
+  tick(selling: AssetID, buying: AssetID): Tick
+
+  """Subscribe to new transactions on the network"""
+  transactions(id: TransactionHash): Transaction!
+
+  """Subscribe to new operations on the network"""
+  operations(txSource: [AccountID], opSource: [AccountID], type: [OperationType], destination: [AccountID], asset: [AssetID]): Operation!
+}
+
+"""Represents best bid/ask pair for the pair of assets"""
+type Tick {
+  selling: AssetID
+  buying: AssetID
+  bestBid: Float
+  bestAsk: Float
+}
+
+"""Represents time range"""
+type TimeBounds {
+  minTime: DateTime!
+  maxTime: DateTime
+}
+
+"""Represents single trade(fulfilled offer)"""
+type Trade {
+  id: String
+
+  """When the ledger with this trade was closed"""
+  ledgerCloseTime: DateTime!
+
+  """The sell offer"""
+  offer: OfferID
+  seller: Account
+
+  """Amount of `assetSold` that was moved from `seller` to `buyer`"""
+  amountSold: String!
+  assetSold: Asset!
+
+  """Counter party of this trade"""
+  buyer: Account
+
+  """Amount of `assetBought` that was moved from `buyer` to `seller`"""
+  amountBought: String!
+  assetBought: Asset!
+
+  """Original offer price"""
+  price: String
+}
+
+type TradeConnection {
+  pageInfo: PageInfo!
+  nodes: [Trade]
+  edges: [TradeEdge]
+}
+
+type TradeEdge {
+  cursor: String!
+  node: Trade
+}
+
+"""
+Represents a single [transaction](https://www.stellar.org/developers/guides/concepts/transactions.html) on Stellar network
+"""
+type Transaction {
+  id: TransactionHash!
+
+  """Ledger in which transaction was executed"""
+  ledger: Ledger!
+
+  """Index of this transaction in the ledger"""
+  index: Int!
+  memo: Memo
+
+  """The fee that source account had to pay"""
+  feeAmount: Int!
+
+  """Account that issued the transaction"""
+  sourceAccount: Account!
+
+  """Account that paid the fee. Not empty only for fee bump transactions"""
+  feeAccount: Account
+
+  """
+  Time range, in which transaction is considered valid. [More info](https://www.stellar.org/developers/guides/concepts/transactions.html#time-bounds)
+  """
+  timeBounds: TimeBounds
+
+  """The actual fee paid by the source account"""
+  feeCharged: Int!
+  success: Boolean!
+  resultCode: Int!
+
+  """Operations, which this transaction contains"""
+  operations(first: Int, after: String, last: Int, before: String, order: Order): OperationConnection
+
+  """Payment-relate operations, which this transaction contains"""
+  payments(first: Int, after: String, last: Int, before: String): OperationConnection
+}
+
+type TransactionConnection {
+  pageInfo: PageInfo!
+  nodes: [Transaction]
+  edges: [TransactionEdge]
+}
+
+type TransactionEdge {
+  cursor: String!
+  node: Transaction
+}
+
+"""Represents transaction's hash"""
+scalar TransactionHash
+
+type TransactionSubmitResponse {
+  status: String!
+  hash: String!
+  error: String
+}
+

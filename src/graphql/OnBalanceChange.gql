@@ -1,0 +1,27 @@
+subscription OnBalanceChange($args: EventInput!) {
+  balance(args: $args) {
+    account {
+      id
+    }
+    mutationType
+    asset {
+      id
+      code
+      issuer {
+        id
+      }
+    }
+    values {
+      asset {
+        id
+        code
+        issuer {
+          id
+        }
+      }
+      balance
+      limit
+      authorized
+    }
+  }
+}

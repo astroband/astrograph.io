@@ -1,0 +1,46 @@
+{
+  "account": {
+    "id": "GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
+    "sequenceNumber": "144373126631784455",
+    "thresholds": {
+      "low": 2,
+      "medium": 2,
+      "high": 2,
+      "masterWeight": 0
+    },
+    "ledger": {
+      "seq": 51578830
+    },
+    "balances": [
+      {
+        "asset": {
+          "id": "native"
+        },
+        "balance": "18845.0135229",
+        "limit": "922337203685.4775807"
+      },
+      {
+        "asset": {
+          "id": "USDCAllow-GDIEKKIQWMIZ4LD3RP3ABPN7X5KEAEWYMR634BRHB7EULIMEVREWLF3G"
+        },
+        "balance": "2132396833.3362310",
+        "limit": "922337203685.4775807"
+      }
+    ],
+    "signers": [
+      {
+        "signer": "GAPIIRF3JXQAY63NSD6ALZ6JVUYDXCQIQIH5MZA3XYMR7LADTFKRBXZB",
+        "weight": 1
+      },
+      {
+        "signer": "GBBPS4JXB72222FPAHBGPUH3M6XIPG3CFDLIWDVPTAXJFH4WLYL46HQW",
+        "weight": 1
+      },
+      {
+        "signer": "GCHQ3ISXNIIKPQDSOROE4GBA63XZXTMI65C3HTKALFW6VY4KT3NTCELV",
+        "weight": 1
+      }
+    ],
+    "data": []
+  }
+}

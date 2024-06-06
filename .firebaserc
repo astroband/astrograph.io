@@ -1,5 +1,5 @@
 {
   "projects": {
-    "prod": "astrograph-io"
+    "default": "astrograph-io"
   }
 }
